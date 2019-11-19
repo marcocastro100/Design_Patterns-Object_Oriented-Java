@@ -1,6 +1,8 @@
 # Design_Patterns-in-Object_Oriented-Java
 Implementation of a medical clinic management application using OO and Generic Methods as long Design Patterns as Prototype alowing objects clonation of a estructure
 
+UFVJM - University disciplines envolved: Object_Oriented_Programming
+
 • Classes Arvores
 A classe Arvore Binária do trabalho anterior foi desdobrada em 3 Classes arvores
 com o intuito de tratar o tipo de dado a ser armazenado e manipulado para cada
