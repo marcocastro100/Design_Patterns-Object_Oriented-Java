@@ -8,6 +8,7 @@ uma dos diferentes tipos de classes que implementam a interface Comparable (ga-
 rantem a presença do método compareTO necessário para manipulação de objetos
 na estrutura de arvore binária) sendo estas: Consulta, Paciente e Funcionário e suas
 subclasses. Implementação da estrutura:
+
 – Add(T obj)
 Método que deve ser chamado para possibilitar a inserção de elementos na
 coleção de arvore. Primeiramente o método verifica o estado do atributo raiz
@@ -25,6 +26,7 @@ o nó de inserção correto e nulo seja encontrado retornando assim True. Caso
 o objeto já esteja na coleção, é retornado False e o objeto não é adicionado
 novamente por esta não ser um prática prevista na implementação de Arvores
 de Pesquisa Binária.
+
 – percorrer()
 O método percorrer é que realmente ’Anda’ na estrutura de Arvore binária
 usando somente a estrutura de Iterator implementada na classe aninhada à
@@ -33,13 +35,16 @@ Iterator e através deste chama e exibe o resultado da função next() implemen-
 tado da interface Iterator. Essa chamada ao método next() é feita dentro de
 um laço while que se repete enquanto a função hasNext(), também do Iterator,
 seja verdadeira.
+
 – size()
 Este método simplesmente retorna o valor do atributo size da classe arvore,
 representado o numero de elementos atualmente presentes na coleção.
+
 – Iterator()
 Este método é responsável por instanciar um objeto do tipo TreeIterator retor-
 nando este objeto para que os métodos de interação da arvore sejam acessı́veis
 para todo o controle e manutenção da coleção.
+
 – conteins(Object obj)
 A função é responsável por retornar True caso um objeto passado por parâmetro
 4esteja na coleção ou false caso contrário. Primeiramente foi implementada
@@ -49,10 +54,12 @@ paração(CompareTo) do objeto passado por parâmetro com cada objeto pre-
 sente na arvore. Quando os objetos forem iguais, a variável de controle é setada
 como True e retornada, significando que o elemento passado por parâmetro está
 presente na estrutura.
+
 – isEmpty()
 Este método faz a verificação do atributo raiz da classe Arvore, caso este tenha
 valor null (significando que não há elementos presentes na arvore) é retornado
 um true, caso não (existem elemento(s) na arvore) o método retorna false.
+
 – remove(Object obj)
 Método com o propósito de, informado um obj qualquer por meio dos parâmetros
 da função, localizar este objeto na arvore e, se encontrado, fazer uma chamada
@@ -61,6 +68,7 @@ pesquisa binária. o método remove de TreeIterator é responsável pela redistr
 buição de referências da arvore, garantindo sua integridade. Caso o elemento
 informado como parâmetro tenha sido encontrado na arvore, a função retorna
 True, caso negativo retorna False.
+
 – gravarElementos
 Esta função realiza a passagem dos elementos presentes na coleção de arvore
 para um arquivo qualquer de nome escolhido pelo usuário utilizando as im-
@@ -69,12 +77,14 @@ para regular o fluxo de dados entre o softhware e o arquivo: file: arquivos, out
 putStream para fluxo de dados e ObjectoutputStream para fluxo de objetos.
 Além da importação java.io.IOException usado para o catch de erro de fluxo
 de aruivo no bloco try.
+
 – importElementos
 Método usado para a recuperação de objetos gravados em arquivos, adicionando-
 os à estrutura de coleção da mesma maneira e estrutura apresentada no método
 anterior porém no sentido inverso, de extração de elementos. Ao final interação(
 caso o bloco try não lance uma exception) uma nova estrutura de arvore é ge-
 rada com os objetos resultantes do fluxo de dados.
+
 • Classe FuncionarioPaciente
 Esta classe tem o objetivo de cadastrar Funcionários como cliente para que seja
 dado um desconto de 25% no valor da consulta como requisitado no trabalho, não
@@ -90,6 +100,7 @@ uma referência para o próprio objeto no lugar de um Paciente.
 consulta feito por uma instancia da classe atendente, o parâmetro ValorConsulta é
 multiplicado por (0.75) garantindo assim o desconto de 25% do valor de consulta
 para qualquer Funcionário;
+
 • Classes Funcionário e Paciente
 Estas classes implementadas em trabalhos anteriores foram modificadas para esten-
 der a classe Comparable, garantindo a presença do método compareTo necessário
@@ -98,12 +109,14 @@ abstrata Funcionário, foi implementada o método compareTo e, em suas subclasse
 este mesmo método foi sobrescrito com a implementação SUPER.compareTo(obj funcionario),
 garantindo que a mesma implementação da classe funcionário seja também seja cha-
 mada por suas subclasses.
+
 • Classe Consulta
 A classe Consulta criada e documentada em trabalhos anteriores foi modificada
 com o intuito de se usar o padrão de projeto Prototype que foi usado para uma
 boa solução de geração de clones das instancias da classe, implementando além da
 interface comparable a classe cloneable, indicando que a classe consulta é passı́vel
 de ser clonada e garantindo a existência do método Clone().
+
 • Class Sistema
 A classe Sistema foi alterada com o objetivo de manipular as novas funcionalidades
 adicionadas no sistema, instanciando as diferentes arvores (uma para cada tipo de
