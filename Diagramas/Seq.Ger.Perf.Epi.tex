@@ -1,0 +1,46 @@
+%Packages PadrÃ£o:
+\documentclass[12pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+%-------------------------------------------------------------------------------------------------------------------------
+%Configura as margens com as regras ABNT
+\usepackage{geometry}
+\geometry{left = 3cm, right = 2cm, top = 3cm,, bottom = 2cm}
+%Permite ColocaÃ§Ã£o automÃ¡tica do texto
+\usepackage{scrextend}
+%-------------------------------------------------------------------------------------------------------------------------
+\usepackage{tikz,ifthen,xstring,calc,pgfopts}  %DependÃªncia tikz-uml
+\usepackage{tikz-uml} %tikz-uml, arquivo tikz-uml.sty presente no mesmo diretÃ³rio do trabalho
+%-------------------------------------------------------------------------------------------------------------------------
+\begin{document}
+
+  \begin{tikzpicture}
+    \begin{umlseqdiag}
+
+    %Objetos
+      \umlactor[fill=white, no ddots]{user}
+      \umlboundary [fill=white, x =5, no ddots]{interface}
+      \umlentity [fill=white,x = 12, no ddots]{system}
+      \umldatabase [x = 15, no ddots, fill=blue!20]{database}
+    
+    %Chamadas
+      \begin{umlcall}[op=Requisição de Acesso]{user}{interface}
+      
+      \begin{umlcall} [op= Gerar Perfil Epidemologico(), return=Requisito de Informações]{interface}{system}
+      \end{umlcall}      
+      \begin{umlcall} [dt = 10,op= Informa Perfil, return=Exibe Resultados]{interface}{system}
+            
+      \begin{umlcall} [dt =5,op = Cad. do Perfil(), fill=red!10, return= Ret Resultados]{system}{database}
+      \end{umlcall}
+      \end{umlcall}
+            
+      \end{umlcall}
+      
+    \end{umlseqdiag}
+  \end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,52 @@
+%Packages PadrÃ£o:
+\documentclass[12pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+%-------------------------------------------------------------------------------------------------------------------------
+%Configura as margens com as regras ABNT
+\usepackage{geometry}
+\geometry{left = 3cm, right = 2cm, top = 3cm,, bottom = 2cm}
+%Permite ColocaÃ§Ã£o automÃ¡tica do texto
+\usepackage{scrextend}
+%-------------------------------------------------------------------------------------------------------------------------
+\usepackage{tikz,ifthen,xstring,calc,pgfopts}  %DependÃªncia tikz-uml
+\usepackage{tikz-uml} %tikz-uml, arquivo tikz-uml.sty presente no mesmo diretÃ³rio do trabalho
+%-------------------------------------------------------------------------------------------------------------------------
+\begin{document}
+
+  \begin{tikzpicture}
+    \begin{umlseqdiag}
+
+    %Objetos
+      \umlactor[fill=white, no ddots]{user}
+      \umlboundary [fill=white, x =5, no ddots]{interface}
+      \umlentity [fill=white,x = 11,no ddots]{system}
+      \umldatabase [x = 15,no ddots, fill=blue!20]{database}
+    
+    %Chamadas
+      \begin{umlcall}[op=Requisição de Acesso,]{user}{interface}
+      
+      \begin{umlcall} [op=Req Efet. de Pagamento (), return=Req Info Cliente]{interface}{system}
+      \end{umlcall}    
+       
+      \begin{umlcall} [dt = 10,op=Informa Cliente, return=Ret Req de Inf de Pagamento]{interface}{system}
+      \end{umlcall}
+      
+      \begin{umlcall} [dt = 10,op=Informa Pagamento , return=Ret Validação]{interface}{system}
+            
+      \begin{umlcall} [op = Valida Informação(), fill=green!10, return=Retorna Resposta]{system}{database}
+      \end{umlcall}
+      
+           
+      \end{umlcall}
+      
+      \end{umlcall}
+      
+    \end{umlseqdiag}
+  \end{tikzpicture}
+
+\end{document}

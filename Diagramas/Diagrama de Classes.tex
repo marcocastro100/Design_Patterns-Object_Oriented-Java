@@ -1,0 +1,81 @@
+%Packages Padrão:
+\documentclass[8pt,a4paper]{extarticle}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+%-------------------------------------------------------------------------------------------------------------------------
+%Configura as margens com as regras ABNT
+\usepackage{geometry}
+\geometry{left = 1cm, right = 1cm, top = 2cm,, bottom = 2cm}
+%Permite Colocação automática do texto
+\usepackage{scrextend}
+%-------------------------------------------------------------------------------------------------------------------------
+\usepackage{tikz,ifthen,xstring,calc,pgfopts}  %Dependência tikz-uml
+\usepackage{tikz-uml} %tikz-uml, arquivo tikz-uml.sty presente no mesmo diretório do trabalho
+%-------------------------------------------------------------------------------------------------------------------------
+\begin{document}
+  \begin{tikzpicture}
+   %FUNCIONARIO
+   \umlclass[x = -1, y =3]{Funcionario}{ -- nome : string \\
+   	\-- endereco : string \\
+   	\-- telefone : string \\
+   	\-- e-mail : string \\
+   	\-- cpf : string \\
+   	\-- totalfuncionarios : int}
+   { + editaFuncionario (nome: string, endereco: string, telefone: string,\\ \ e-mail: string, cpf: string )\\        
+   \ + cadastrarPaciente(nome: string, endere�o: string, telefone: string,\\ \ email: string, cpf: string)\\    
+   \ + editarPaciente(nome: string, endere�o: string, telefone: string,\\ \ email: string, cpf: string)\\
+   \ + emitirHistorico (obj{\hspace{.2cm}}agenda: Agenda, obj\_ paciente: Paciente)\\ 
+   \ + cadastrarConsulta (paciente: string, medico: string,\\  \ especialidade: string, data: string, horas: string, valor: double,\\ \ obj\_consulta: Consulta: Consulta)\\
+   \ + editarConsulta(paciente: string, medico: string, especialidade: string,\\ \ data: string, horas: string, valor: double, obj\_consulta: Consulta)\\
+   \ + cancelarConsulta(obj\_consulta: Consulta, obj\_agenda: Agenda)\\
+   \ + verificarConsulta(data: string, hora: string, obj\_agenda: Agenda)\\
+   \ + listarConsultas(obj\_agenda: Agenda) }
+   %SECRETARIO 
+   \umlclass[x= 8, y= 0]{Secretario} {}{ + efetuarPagamento(obj\_cliente: cliente,\\ \  formapagamento: string, ncartao: int,\\ \ valor: double)\\ \ + emitirRelatorioMensal()}
+   %MEDICO
+   \umlclass[x = 8, y=5]{Medico}{-- especialidade: string} { + gerarReceituario(obj\_cliente: Cliente)\\ 
+   \ + geralPerfil(obj\_cliente: Cliente)}
+   %PACIENTE	
+   \umlclass[x= -3, y=-12]{Paciente}{-- nome: string\\ 
+   	\-- endere�o: string \\
+   	\-- telefone: string \\
+   	\-- e-mail: string \\
+   	\-- cpf: string \\
+   	\-- id: int \\
+    \-- totalpacientes: int \\
+    \-- historico(): Consulta}{ + Edit(nome: string, endereco: string,\\ \ telefone: string, e-mail: string, cpf: string)\\ 
+    \ + editarPaciente(nome: string, endereco: string,\\ \ telefone: string, e-mail: string, cpf: string)}	
+    %CONSULTA
+    \umlclass[x = 7, y=-7]{Consulta}{-- paciente: string\\ 
+       \-- medico: string\\ 
+       \-- especialidade: string\\
+       \-- data: string\\
+       \-- hora: string\\
+       \-- valor: double\\
+       \-- totalconsultas: int}{ + Consulta(medico: string, paciente: string, especialidade: string,\\ \ data: string, hora: string, valor: double)\\ 
+	   \ + editarConsulta(medico: string, paciente: string, especialidade: string\\ \, data: string, hora: string. valor: double)}
+    %AGENDA
+    \umlclass[x = -1, y=10]{Agenda}{-- vet\_consulta[ ]: Consulta;}{ + adicionarConsulta(obj\_consulta: Consulta,\\ \ obj\_paciente: Paciente\\ 
+    \ + cancelarConsulta(obj\_consulta: Consulta)\\ 
+    \ + listarConsultas()}
+    %SISTEMA
+    \umlclass[x= 8, y=10]{Sistema}{}{}
+    
+    %RELACIONAMENTOS
+    \umluniassoc{Secretario}{Funcionario}
+    \umluniassoc{Medico}{Funcionario}
+    
+    \umlassoc{Agenda}{Funcionario}
+    \umlassoc{Paciente}{Funcionario}
+    \umlassoc{Sistema}{Funcionario}
+    
+    \umlunicompo{Sistema}{Agenda}
+    \umlunicompo{Funcionario}{Consulta}
+    \umlunicompo{Paciente}{Consulta}
+     \end{tikzpicture}
+    
+\end{document}

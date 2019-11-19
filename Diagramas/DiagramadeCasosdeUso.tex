@@ -1,0 +1,63 @@
+%Packages Padrão:
+\documentclass[12pt,a4paper]{extarticle}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+%-------------------------------------------------------------------------------------------------------------------------
+%Configura as margens com as regras ABNT
+\usepackage{geometry}
+\geometry{left = 3cm, right = 2cm, top = 3cm,, bottom = 2cm}
+%Permite Colocação automática do texto
+\usepackage{scrextend}
+%-------------------------------------------------------------------------------------------------------------------------
+\usepackage{tikz,ifthen,xstring,calc,pgfopts}  %Dependência tikz-uml
+\usepackage{tikz-uml} %tikz-uml, arquivo tikz-uml.sty presente no mesmo diretório do trabalho
+%-------------------------------------------------------------------------------------------------------------------------
+\begin{document}
+%Diagrama de Casos de Uso
+%Sistema
+\begin{tikzpicture}
+  %Atores
+  \umlactor[x = 13, y = 6]{Funcionario}
+  \umlactor[x = -1, y = 6]{Cliente}
+  \umlactor[x = 13, y = -1]{Secretario}
+  \umlactor[x = -1, y = -3]{Medico}
+  
+  \begin{umlsystem} [x = 5, y = 6, fill =green!10]{SISTEMA}
+    
+    %Casos de Uso
+  	\umlusecase[x = 0, y = 2, name = c1]{CadastrarPaciente}
+  	\umlusecase[x = 1, y = 0.5, name = c2]{EmitirHistoricoPaciente}
+  	\umlusecase[x = -1, y = -1, name = c3]{CadastrarConsulta}
+  	\umlusecase[x = 0, y = -4, name = c4]{VerificarAgenda}
+  	\umlusecase[x = 4, y = -3, name = c5]{CancelarConsulta}
+  	\umlusecase[x = -1, y = -6, name = c6]{EfetuarPagamento}
+  	\umlusecase[x = 3, y = -8, name = c7]{EmitirHistoricoMensal}
+  	\umlusecase[x = 1, y = -10, name = c8]{GerarPerfilEpidemiologico}
+  	\umlusecase[x = 1, y = -12, name = c9]{GerarReceituario}  	
+  	
+  	%Relacionamentos
+  	%Ator - Caso de Uso
+  	\umlassoc{Funcionario}{c1}
+  	\umlassoc{Cliente}{c1}
+  	\umlassoc{Funcionario}{c2}
+  	\umlassoc{Funcionario}{c3}
+  	\umlassoc{Cliente}{c3}
+  	\umlassoc{Cliente}{c6}
+  	\umlassoc{Secretario}{c6}
+  	\umlassoc{Secretario}{c7}
+  	\umlassoc{Medico}{c8}
+  	\umlassoc{Medico}{c9}
+  	
+  	%Caso de Uso - Caso de Uso
+  	\umlinclude{c3}{c4}
+  	\umlextend{c3}{c5}
+  	
+  \end{umlsystem}
+\end{tikzpicture}
+
+	
+\end{document}

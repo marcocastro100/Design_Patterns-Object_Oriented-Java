@@ -1,0 +1,49 @@
+%Packages Padr√£o:
+\documentclass[12pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+%-------------------------------------------------------------------------------------------------------------------------
+%Configura as margens com as regras ABNT
+\usepackage{geometry}
+\geometry{left = 3cm, right = 2cm, top = 3cm,, bottom = 2cm}
+%Permite Coloca√ß√£o autom√°tica do texto
+\usepackage{scrextend}
+%-------------------------------------------------------------------------------------------------------------------------
+\usepackage{tikz,ifthen,xstring,calc,pgfopts}  %Depend√™ncia tikz-uml
+\usepackage{tikz-uml} %tikz-uml, arquivo tikz-uml.sty presente no mesmo diret√≥rio do trabalho
+%-------------------------------------------------------------------------------------------------------------------------
+\begin{document}
+	
+
+  \begin{tikzpicture}
+    \begin{umlseqdiag}
+
+    %Objetos
+      \umlactor[fill=white, no ddots]{user}
+      \umlboundary [fill=white, x =5, no ddots]{interface}
+      \umlentity [fill=white,x = 10, no ddots]{system}
+      \umldatabase [x = 15, no ddots, fill=blue!20]{database}
+    
+    %Chamadas
+      \begin{umlcall}[op=RequisiÁ„o de Acesso]{user}{interface}
+      
+      \begin{umlcall} [op=Req GeraÁ„o Receituario(), return=Req Info Receitu·rio]{interface}{system}
+      \end{umlcall}
+      \begin{umlcall} [dt = 10,op=Informa Receituario, return=Ret Status de Cadastro]{interface}{system}
+            
+      \begin{umlcall} [op = Cadastro Receituario(), fill=red!10, return=Retorna Status Cadastro]{system}{database}
+      \end{umlcall}
+      
+           
+      \end{umlcall} 
+      
+      \end{umlcall} % A:B 
+      
+    \end{umlseqdiag}
+  \end{tikzpicture}
+
+\end{document}

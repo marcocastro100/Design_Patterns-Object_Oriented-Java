@@ -1,0 +1,41 @@
+%Packages PadrÃƒÂ£o:
+\documentclass[8pt,a4paper]{extarticle}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+%-------------------------------------------------------------------------------------------------------------------------
+%Configura as margens com as regras ABNT
+\usepackage{geometry}
+\geometry{left = 3cm, right = 2cm, top = 3cm,, bottom = 2cm}
+%Permite ColocaÃƒÂ§ÃƒÂ£o automÃƒÂ¡tica do texto
+\usepackage{scrextend}
+%-------------------------------------------------------------------------------------------------------------------------
+\usepackage{tikz,ifthen,xstring,calc,pgfopts}  %DependÃƒÂªncia tikz-uml
+\usepackage{tikz-uml} %tikz-uml, arquivo tikz-uml.sty presente no mesmo diretÃƒÂ³rio do trabalho
+%-------------------------------------------------------------------------------------------------------------------------
+\begin{document}
+  \begin{tikzpicture}
+     %ESTADOS
+     \umlstateinitial[y= 4,name=initial]
+     \umlstatefinal[x = -2, y = -12, name=f1]
+     \umlstatefinal[x = 12, y= -14, name=f2]
+	 \begin{umlstate}[name = s1, x = 4]{Aguardando Acesso} \end{umlstate}
+     \begin{umlstate}[name = s2, x = 2, y = -5]{Aguardando Dados} \end{umlstate}
+     \begin{umlstate}[name = s3, x = -2, y = -8]{Cancelar} \end{umlstate}
+     \begin{umlstate}[name = s4, x = 7, y = -7]{Aguardando Verificação} \end{umlstate}
+     \begin{umlstate}[name = s5, x = 12, y =-10]{Cadastrado} \end{umlstate}
+       
+      %TRANSICOES
+      \umltrans[arg= Cadastrar Consulta ]{initial}{s1}
+      \umltrans[arg= Requisição de Dados]{s1}{s2}
+      \umltrans[arg= Invalidação]{s2}{s3}
+      \umltrans[arg= Verificação de Disponibilidade na Agenda]{s2}{s4}
+      \umlHVtrans[arg= Atualiza o Banco de Dados]{s4}{s5}
+	  \umltrans{s3}{f1}
+	  \umltrans{s5}{f2}	      
+      
+  \end{tikzpicture}
+\end{document}
